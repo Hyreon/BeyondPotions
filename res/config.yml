@@ -1,0 +1,62 @@
+#what seed should be used for procedural brewing recipes? if 0, it will be set to something random on server start.
+seed: 0
+
+#ignore for now. if you are trying to run this in 1.13, contact me.
+use-namespaces: true
+
+#should the world seed be used for procedural brewing recipes? if true, the seed above is ignored.
+#for multi-world servers, each world will have different recipes!
+use-world-seed: false
+
+#each potion generates with an ID. different ingredients change the ID slightly.
+#should brewing one ingredient against the same ID ever produce a different result?
+unstable-ids: false
+
+#should a brewing stand accept any item into any potion?
+#in its current state, turning this off effectively disables the plugin.
+use-anything: true
+
+#should the brewing stand use the default behavior for ingame brewing recipes?
+#this includes some very powerful and cheap recipes, such as Strength II and Invisibility 8:00.
+#it also makes it less likely for new players to discover the plugin's existence.
+force-defaults: true
+
+#should random recipes work on water bottles?
+#if false, most (random) recipes will require awkward potions as a starting point.
+allow-stale: false
+
+#should all brewing stands become fueled when ingredients are put in them?
+infinite-fuel: false
+
+#should brewing stand recipes be completed instantly?
+fast-brew: false
+
+#hard-coded parameters for each potion effect.
+#
+#maximum-level: if a potency higher than this is rolled, it is reduced.
+# in previous versions, higher potencies could reduce the length of lower ones. this is no longer true.
+# unless otherwise stated, higher effects are no different than lower ones.
+# setting a value to 0 bans it.
+level-caps:
+  base-max-level: 6  #anything higher doesn't show up right. if you're fine with it, go as high as 127; 128 is instead -128.
+  max-level:
+    STRENGTH: 3  #for balance reasons.
+    BAD_OMEN: 5  #6 seems to make for a harder raid, but does not provide a better reward.
+    JUMP_BOOST: 15  #any higher, and the effects cause damage on landing from flat jumps.
+    REGENERATION: 6
+    POISON: 5
+    RESISTANCE: 4  #resistance 5 is just immunity. if you're okay with that, set it to 5 - any higher is redundant.
+    MINING_FATIGUE: 4
+    WITHER: 3
+    GLOWING: 1
+    FIRE_RESISTANCE: 1
+    BLINDNESS: 1
+    INVISIBILITY: 1
+    NIGHT_VISION: 1
+    NAUSEA: 1
+    WATER_BREATHING: 1
+    DOLPHINS_GRACE: 1
+    DARKNESS: 1
+
+#new entries will automatically be added as new updates come along. however, they will have no description.
+#check the spigot page for details.

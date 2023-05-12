@@ -1,0 +1,5 @@
+name: BeyondPotions
+description: Allows the use of anything when brewing potions.
+main: top.hyreon.beyondPotions.BeyondPotions
+version: 1.1
+api-version: 1.13
