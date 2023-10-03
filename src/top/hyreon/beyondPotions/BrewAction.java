@@ -1,6 +1,5 @@
 package top.hyreon.beyondPotions;
 
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -57,6 +56,7 @@ public abstract class BrewAction {
         potionEffects.put(PotionEffectType.LEVITATION, -5);
         potionEffects.put(PotionEffectType.BAD_OMEN, -5);
         potionEffects.put(PotionEffectType.BLINDNESS, -10);
+        potionEffects.put(PotionEffectType.DARKNESS, -10);
         potionEffects.put(PotionEffectType.HUNGER, -10);
         potionEffects.put(PotionEffectType.CONFUSION, -10);
         potionEffects.put(PotionEffectType.SLOW, -25);
@@ -175,7 +175,10 @@ public abstract class BrewAction {
                 .filter(e -> !e.equals(strongest))
                 .collect(Collectors.toList());
         String secondaryAdjective = getEffectAdjective(secondaryEffectList);
-        String potionName = WordUtils.capitalizeFully(strongest.getType().getName().replace('_', ' '));
+        String potionName = Arrays.stream(strongest.getType().getName().split("_"))
+                .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase())
+                .collect(Collectors.joining(" "));
+
 
         meta.setDisplayName(String.format(potionFormat, secondaryAdjective, potionName));
         meta.setColor(strongest.getType().getColor());
@@ -186,7 +189,7 @@ public abstract class BrewAction {
 
         int effectAlignment = 0;
         for (PotionEffect effect : secondaryEffectList) {
-            effectAlignment += weightedDuration(effect) * powerIndex.get(effect.getType());
+            effectAlignment += weightedDuration(effect) * powerIndex.getOrDefault(effect.getType(), 0);
         }
 
         if (effectAlignment < -100 * 2 * 60 * 20) { //nasty effects for longer than 2 minutes
